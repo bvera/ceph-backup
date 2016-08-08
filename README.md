@@ -5,12 +5,12 @@
 Tested on my lab, posted at my personal blog:
 http://nubla.do/
 
-## Author
+### Author
 
 William Vera   
 <billy@billy.mx>
 
-## TODO
+### TODO
 * Add a date prefix for the path of backup: `date +%F-%H%M%S`
 * Add a option to choose what backup do you want import
 * Validate if the dest pool exist and then create
