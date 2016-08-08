@@ -1,6 +1,6 @@
 # ceph-backup
 
-**Very, Very rustic** script to export and import [Ceph](http://ceph.com/) **RADOS** images ([Block Storage](http://docs.ceph.com/docs/master/rbd/rbd/))
+**Very, very, very rustic** script to export and import [Ceph](http://ceph.com/) **RADOS** images ([Block Storage](http://docs.ceph.com/docs/master/rbd/rbd/))
 
 Tested on my lab, posted at my personal blog:
 http://nubla.do/
