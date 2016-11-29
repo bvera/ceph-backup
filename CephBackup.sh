@@ -1,7 +1,8 @@
 #!/bin/bash
 # wvera@suse.com
 
-BackupPath=/home/cephadm/backups
+BackupDate=$(date +%d%b%Y)
+BackupPath=/home/backups/${BackupDate}
 
 usage() {
     echo "Ceph Export / Import Block Storage"
@@ -9,12 +10,14 @@ usage() {
 }
 
 export() {
+mkdir -p ${BackupPath}
 for pool in $(rados lspools)
 do
   for  images in $(rbd ls -p $pool)
   do
   PoolExportPath=${BackupPath}/${pool}
   mkdir -p $PoolExportPath
+  echo "Exporting: $pool $images"
   rbd export -p $pool $images ${PoolExportPath}/${images}
   done
 done
@@ -25,11 +28,11 @@ if [ ! -d $BackupPath ]
     then
     echo "You don't have backups in $BackupPath or variable is empty"
     exit 1
-    else 
+    else
     for pool in $(ls $BackupPath);do
-    ceph osd pool create $pool 128
-    for image in $(ls ${BackupPath}/${pool});do 
-    echo ${BackupPath}/${pool}/$image 
+    ceph osd pool create $pool 2048 2048
+    for image in $(ls ${BackupPath}/${pool});do
+    echo ${BackupPath}/${pool}/$image
     rbd import --dest-pool $pool ${BackupPath}/${pool}/$image $image
     done
     done
@@ -49,7 +52,6 @@ ask() {
     usage
   	;;
 	esac
-	
+
 }
 if [ "$#" -ne "1" ]; then usage; else DOIT=$1; ask;fi
-
