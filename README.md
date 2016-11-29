@@ -8,7 +8,7 @@ http://nubla.do/
 ### Author
 
 William Vera   
-<billy@billy.mx>
+<wv@linux.com>
 
 ### TODO
 * Add a date prefix for the path of backup: `date +%F-%H%M%S`
